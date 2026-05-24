@@ -38,4 +38,4 @@ https://github.com/NikhilaVattikunta/inventory-reservation-system
 
 ## Live Deployment
 
-https://inventory-reservation-system-pl.vercel.app
+[https://inventory-reservation-system-pl.vercel.app](https://inventory-reservation-system-pi.vercel.app/)
