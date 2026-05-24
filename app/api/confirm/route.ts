@@ -7,17 +7,23 @@ export async function POST(req: Request) {
 
     const { reservationId } = body;
 
-    const reservation =
-      await prisma.reservation.findUnique({
-        where: {
-          id: reservationId,
-        },
-      });
+    const reservation = await prisma.reservation.findUnique({
+      where: {
+        id: reservationId,
+      },
+    });
 
     if (!reservation) {
       return NextResponse.json(
         { error: "Reservation not found" },
         { status: 404 }
+      );
+    }
+
+    if (reservation.status !== "pending") {
+      return NextResponse.json(
+        { error: "Reservation already processed" },
+        { status: 400 }
       );
     }
 
@@ -34,7 +40,6 @@ export async function POST(req: Request) {
       success: true,
       message: "Purchase confirmed",
     });
-
   } catch (error) {
     console.error(error);
 
